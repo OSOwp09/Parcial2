@@ -1,58 +1,32 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { GetPhotos } from "../store/slices/photos/thunks";
+import { useEffect, useState, useMemo } from "react";
+import { PhotoList } from "./photoList";
 
 export const PhotosApp = () => {
-	const [photosList, setPhotosList] = useState([]);
-	const [page, setPAge] = useState(0);
-
-	const photos = useSelector((state) => state.photos);
-	const dispatch = useDispatch();
-
-	useEffect(() => {
-		dispatch(GetPhotos());
-	}, []);
-
-	const onClick = (i) => {
-		dispatch(GetPhotos(page + i));
-		setPhotosList(photos.photos);
-		console.log(photos.photos);
-	};
+	const [start, setStart] = useState(false);
 	return (
 		<>
-			<div>
-				<button onClick={() => onClick()}>CLick</button>
-				{/* <div>
-					<button onClick={() => onClick()}>Previous Page</button>
-					<button onClick={() => onClick()}>Next Page</button>
-				</div> */}
-				<div>
-					<tbody className="border-2 border-black">
-						<tr>
-							<td className="border border-black">Album</td>
-							<td className="border border-black">ID</td>
-							<td className="border border-black">Title</td>
-							<td className="border border-black">Image</td>
-							<td className="border border-black">Thumbnail</td>
-						</tr>
-						{photosList.map((photo, index) => (
-							<tr key={index} className="border border-black">
-								<td className="border border-black">
-									{photosList[index]?.albumId}
-								</td>
-								<td className="border border-black">{photosList[index]?.id}</td>
-								<td className="border border-black">
-									{photosList[index]?.title}
-								</td>
-								<td className="border border-black">
-									<img src={photosList[index]?.url} alt="" />
-								</td>
-								<td className="border border-black">
-									<img src={photosList[index]?.thumbnailUrl} alt="" />
-								</td>
-							</tr>
-						))}
-					</tbody>
+			<div
+				className="h-auto w-screen 
+			flex place-content-center place-items-center
+			bg-slate-800"
+			>
+				<div className="h-screen flex place-content-center place-items-center">
+					<button
+						onClick={() => setStart(true)}
+						className={`
+						font-semibold text-lg text-slate-600
+						bg-slate-800 p-4 h-fit w-auto
+						shadow-[0px_0px_18px_-2px_rgba(0,0,0,0.25)]
+						hover:text-slate-200
+						hover:shadow-[0px_0px_18px_-0px_rgba(0,0,0,0.25)]
+						rounded-xl
+						${start ? "hidden" : ""}`}
+					>
+						Generate List
+					</button>
+				</div>
+				<div className={`${start ? "" : "hidden"}`}>
+					<PhotoList />
 				</div>
 			</div>
 		</>
