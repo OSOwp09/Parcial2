@@ -22,10 +22,10 @@ export const PhotosApp = () => {
 		<>
 			<div>
 				<button onClick={() => onClick(0)}>CLick</button>
-				<div>
+				{/* <div>
 					<button onClick={() => onClick()}>Previous Page</button>
-					<button onClick={() => setPAge(10)}>Next Page</button>
-				</div>
+					<button onClick={() => onClick()}>Next Page</button>
+				</div> */}
 				<div>
 					<tbody className="border-2 border-black">
 						<tr>
