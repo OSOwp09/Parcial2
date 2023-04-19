@@ -8,7 +8,7 @@ export const GetPhotos = (page = 0) => {
 		const resp = await PhotApi.get();
 		dispatch(
 			setPhotos({
-				getPhotos: resp.data.slice(page + 1, page + 11),
+				getPhotos: resp.data.slice(page , page + 10),
 				page: page + 1,
 			})
 		);

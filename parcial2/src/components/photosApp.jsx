@@ -21,7 +21,7 @@ export const PhotosApp = () => {
 	return (
 		<>
 			<div>
-				<button onClick={() => onClick(0)}>CLick</button>
+				<button onClick={() => onClick()}>CLick</button>
 				{/* <div>
 					<button onClick={() => onClick()}>Previous Page</button>
 					<button onClick={() => onClick()}>Next Page</button>
